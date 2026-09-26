@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Litigo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #0a0a0a;
+      --muted: #6b7280;
+      --accent: #b45309;
+      --accent-soft: rgba(180,83,9,.10);
+      --border: rgba(10,10,10,.08);
+      --success: #166534;
+      --success-soft: rgba(22,101,52,.10);
+      --warning: #92400e;
+      --warning-soft: rgba(146,64,14,.10);
+      --error: #991b1b;
+      --error-soft: rgba(153,27,27,.10);
+      --sidebar-bg: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: 'Archivo', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+    }
+
+    /* ─── Sidebar ─────────────────────────────────────────────── */
+    .sidebar {
+      width: 220px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100%;
+    }
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-brand-logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      border-radius: 5px;
+      flex-shrink: 0;
+    }
+    .sidebar-brand-name {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -.01em;
+    }
+    .sidebar-nav {
+      flex: 1;
+      padding: 10px 8px;
+      overflow-y: auto;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .12s ease;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      margin-bottom: 2px;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(10,10,10,.04);
+    }
+    .nav-item.active {
+      color: var(--text);
+      background: var(--accent-soft);
+    }
+    .nav-item svg { flex-shrink: 0; }
+    .sidebar-bottom {
+      border-top: 1px solid var(--border);
+      padding: 12px;
+    }
+    .account-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .12s ease;
+    }
+    .account-row:hover { background: rgba(10,10,10,.04); }
+    .account-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .account-info { flex: 1; min-width: 0; }
+    .account-name { font-size: 12px; font-weight: 600; }
+    .account-plan { font-size: 11px; color: var(--muted); }
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      flex-shrink: 0;
+    }
+
+    /* ─── Main Content ──────────────────────────────────────── */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      height: 100%;
+      padding: 36px 40px;
+    }
+    .view { display: none; }
+    .view.active { display: block; }
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 4px;
+    }
+    .page-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* ─── Home View ─────────────────────────────────────────── */
+    .protection-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .protection-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--success-soft);
+      color: var(--success);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .compliance-big {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .compliance-score-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--success);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .compliance-score-value {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--success);
+    }
+    .compliance-score-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 2px;
+    }
+    .compliance-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      flex: 1;
+    }
+    .stat-box {
+      text-align: left;
+    }
+    .stat-box-value {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .stat-box-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .chatbot-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .chatbot-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--card);
+    }
+    .chatbot-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .activity-row {
+      display: grid;
+      grid-template-columns: 70px 100px 1fr auto;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      font-size: 13px;
+    }
+    .activity-row:last-child { border-bottom: none; }
+    .activity-time { color: var(--muted); font-family: ui-monospace, monospace; font-size: 12px; }
+    .activity-chatbot { font-weight: 500; }
+    .activity-rule { color: var(--text); }
+    .activity-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .result-passed { background: var(--success-soft); color: var(--success); }
+    .result-warning { background: var(--warning-soft); color: var(--warning); }
+    .result-violated { background: var(--error-soft); color: var(--error); }
+
+    /* ─── Rules View ────────────────────────────────────────── */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+    }
+    .rule-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      transition: border-color .15s ease;
+    }
+    .rule-card:hover { border-color: rgba(10,10,10,.16); }
+    .rule-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .rule-card-name {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+    .rule-card-desc {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .rule-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .priority-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .priority-high { background: var(--error-soft); color: var(--error); }
+    .priority-medium { background: var(--warning-soft); color: var(--warning); }
+    .priority-low { background: rgba(107,114,128,.12); color: var(--muted); }
+    .violation-count {
+      font-family: ui-monospace, monospace;
+      color: var(--error);
+      font-weight: 600;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all .15s ease;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .btn-primary:hover { opacity: .9; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+    .toggle {
+      position: relative;
+      width: 34px;
+      height: 18px;
+      background: rgba(107,114,128,.3);
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background .15s ease;
+      flex-shrink: 0;
+    }
+    .toggle.active { background: var(--success); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      background: white;
+      border-radius: 50%;
+      transition: transform .15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    }
+    .toggle.active::after { transform: translateX(16px); }
+
+    /* ─── Chatbots View ─────────────────────────────────────── */
+    .chatbots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .chatbot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .chatbot-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .chatbot-card-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .chatbot-card-status {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .chatbot-card-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ─── Settings View ─────────────────────────────────────── */
+    .settings-group {
+      margin-bottom: 28px;
+    }
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .setting-row:last-child { border-bottom: none; }
+    .setting-label { font-size: 14px; font-weight: 500; }
+    .setting-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .mono { font-family: ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(10,10,10,.12); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(10,10,10,.2); }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img src="assets/logo.png" alt="Litigo" class="sidebar-brand-logo" />
+      <span class="sidebar-brand-name">Litigo</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button class="nav-item" data-view="rules">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Rules
+      </button>
+      <button class="nav-item" data-view="activity">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Activity
+      </button>
+      <button class="nav-item" data-view="chatbots">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Chatbots
+      </button>
+      <button class="nav-item" data-view="settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+      <button class="nav-item" data-view="help">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Help
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="status-row">
+        <span class="status-dot"></span>
+        <span>Protection active</span>
+      </div>
+      <div class="account-row">
+        <div class="account-avatar">L</div>
+        <div class="account-info">
+          <div class="account-name">Local mode</div>
+          <div class="account-plan">Free plan</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- HOME VIEW -->
+    <div id="view-home" class="view active">
+      <div class="protection-status">
+        <span class="protection-badge">
+          <span style="width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;"></span>
+          Protection active
+        </span>
+        <span style="font-size:12px;color:var(--muted);">Monitoring supported chatbots</span>
+      </div>
+
+      <div class="compliance-big">
+        <div class="compliance-score-circle">
+          <span class="compliance-score-value">93</span>
+          <span class="compliance-score-label">Compliance</span>
+        </div>
+        <div class="compliance-stats-grid">
+          <div class="stat-box">
+            <div class="stat-box-value mono">24</div>
+            <div class="stat-box-label">Rules checked today</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value mono" style="color:var(--error);">2</div>
+            <div class="stat-box-label">Violations caught</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value mono">6</div>
+            <div class="stat-box-label">Protected conversations</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <div class="section-title">Protected Chatbots</div>
+        <div class="chatbot-pills">
+          <span class="chatbot-pill"><span class="dot"></span>ChatGPT</span>
+          <span class="chatbot-pill"><span class="dot"></span>Claude</span>
+          <span class="chatbot-pill"><span class="dot"></span>Gemini</span>
+          <span class="chatbot-pill"><span class="dot"></span>Copilot</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Recent Activity</div>
+        <div class="card" style="padding:0 16px;">
+          <div class="activity-list">
+            <div class="activity-row">
+              <span class="activity-time">10:32</span>
+              <span class="activity-chatbot">ChatGPT</span>
+              <span class="activity-rule">"Use bullet points"</span>
+              <span class="activity-result result-passed">Passed</span>
+            </div>
+            <div class="activity-row">
+              <span class="activity-time">10:28</span>
+              <span class="activity-chatbot">Claude</span>
+              <span class="activity-rule">"Always cite sources"</span>
+              <span class="activity-result result-violated">Violation</span>
+            </div>
+            <div class="activity-row">
+              <span class="activity-time">09:51</span>
+              <span class="activity-chatbot">Gemini</span>
+              <span class="activity-rule">"Keep under 100 words"</span>
+              <span class="activity-result result-passed">Passed</span>
+            </div>
+            <div class="activity-row">
+              <span class="activity-time">09:45</span>
+              <span class="activity-chatbot">ChatGPT</span>
+              <span class="activity-rule">"Professional tone"</span>
+              <span class="activity-result result-warning">Warning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RULES VIEW -->
+    <div id="view-rules" class="view">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Rules</h1>
+          <p class="page-subtitle">Define once. Enforce everywhere.</p>
+        </div>
+        <button class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          New Rule
+        </button>
+      </div>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <div class="rule-card-name">Keep answers under 100 words</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="rule-card-desc">Ensure AI responses stay concise and don't ramble.</div>
+          <div class="rule-card-meta">
+            <span class="priority-tag priority-medium">Medium</span>
+            <span>Word count</span>
+            <span class="violation-count">12 violations</span>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <div class="rule-card-name">Always cite sources</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="rule-card-desc">Flag factual claims without citation indicators.</div>
+          <div class="rule-card-meta">
+            <span class="priority-tag priority-high">High</span>
+            <span>Citation</span>
+            <span class="violation-count">28 violations</span>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <div class="rule-card-name">Use bullet points</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="rule-card-desc">Prefer structured lists for multi-point answers.</div>
+          <div class="rule-card-meta">
+            <span class="priority-tag priority-medium">Medium</span>
+            <span>Formatting</span>
+            <span class="violation-count">7 violations</span>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <div class="rule-card-name">Professional tone</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="rule-card-desc">Avoid informal language, contractions, and slang.</div>
+          <div class="rule-card-meta">
+            <span class="priority-tag priority-low">Low</span>
+            <span>Tone</span>
+            <span class="violation-count">3 violations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY VIEW -->
+    <div id="view-activity" class="view">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Activity</h1>
+          <p class="page-subtitle">Complete audit trail of rule checks.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:0 20px;">
+        <div class="activity-list">
+          <div class="activity-row">
+            <span class="activity-time">10:32</span>
+            <span class="activity-chatbot">ChatGPT</span>
+            <span class="activity-rule">"Use bullet points"</span>
+            <span class="activity-result result-passed">Passed</span>
+          </div>
+          <div class="activity-row">
+            <span class="activity-time">10:28</span>
+            <span class="activity-chatbot">Claude</span>
+            <span class="activity-rule">"Always cite sources"</span>
+            <span class="activity-result result-violated">Violation</span>
+          </div>
+          <div class="activity-row">
+            <span class="activity-time">09:51</span>
+            <span class="activity-chatbot">Gemini</span>
+            <span class="activity-rule">"Keep under 100 words"</span>
+            <span class="activity-result result-passed">Passed</span>
+          </div>
+          <div class="activity-row">
+            <span class="activity-time">09:45</span>
+            <span class="activity-chatbot">ChatGPT</span>
+            <span class="activity-rule">"Professional tone"</span>
+            <span class="activity-result result-warning">Warning</span>
+          </div>
+          <div class="activity-row">
+            <span class="activity-time">Yesterday</span>
+            <span class="activity-chatbot">Copilot</span>
+            <span class="activity-rule">"Always cite sources"</span>
+            <span class="activity-result result-passed">Passed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHATBOTS VIEW -->
+    <div id="view-chatbots" class="view">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Protected Chatbots</h1>
+          <p class="page-subtitle">Litigo operates only within these environments.</p>
+        </div>
+      </div>
+      <div class="chatbots-grid">
+        <div class="chatbot-card">
+          <div class="chatbot-card-header">
+            <div class="chatbot-card-name">ChatGPT</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="chatbot-card-status">Protected</div>
+          <div class="chatbot-card-meta">
+            <span>4 rules</span>
+            <span>Last: 2 min ago</span>
+          </div>
+        </div>
+        <div class="chatbot-card">
+          <div class="chatbot-card-header">
+            <div class="chatbot-card-name">Claude</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="chatbot-card-status">Protected</div>
+          <div class="chatbot-card-meta">
+            <span>4 rules</span>
+            <span>Last: 5 min ago</span>
+          </div>
+        </div>
+        <div class="chatbot-card">
+          <div class="chatbot-card-header">
+            <div class="chatbot-card-name">Gemini</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="chatbot-card-status">Protected</div>
+          <div class="chatbot-card-meta">
+            <span>4 rules</span>
+            <span>Last: 42 min ago</span>
+          </div>
+        </div>
+        <div class="chatbot-card">
+          <div class="chatbot-card-header">
+            <div class="chatbot-card-name">Perplexity</div>
+            <div class="toggle"></div>
+          </div>
+          <div class="chatbot-card-status">Disabled</div>
+          <div class="chatbot-card-meta">
+            <span>4 rules</span>
+            <span>—</span>
+          </div>
+        </div>
+        <div class="chatbot-card">
+          <div class="chatbot-card-header">
+            <div class="chatbot-card-name">Copilot</div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="chatbot-card-status">Protected</div>
+          <div class="chatbot-card-meta">
+            <span>4 rules</span>
+            <span>Last: Yesterday</span>
+          </div>
+        </div>
+        <div class="chatbot-card">
+          <div class="chatbot-card-header">
+            <div class="chatbot-card-name">Grok</div>
+            <div class="toggle"></div>
+          </div>
+          <div class="chatbot-card-status">Disabled</div>
+          <div class="chatbot-card-meta">
+            <span>4 rules</span>
+            <span>—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS VIEW -->
+    <div id="view-settings" class="view">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <p class="page-subtitle">Configure Litigo behavior.</p>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="section-title">General</div>
+        <div class="card" style="padding:0 20px;">
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Launch at startup</div>
+              <div class="setting-desc">Start Litigo when you log in</div>
+            </div>
+            <div class="toggle"></div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Notifications</div>
+              <div class="setting-desc">Show system notifications for violations</div>
+            </div>
+            <div class="toggle active"></div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Appearance</div>
+              <div class="setting-desc">Interface theme</div>
+            </div>
+            <span style="color:var(--muted);font-size:13px;">System</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="section-title">Privacy</div>
+        <div class="card" style="padding:0 20px;">
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Local processing only</div>
+              <div class="setting-desc">All rule evaluation happens on your device</div>
+            </div>
+            <span style="color:var(--success);font-size:12px;font-weight:600;">Always enabled</span>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Help improve Litigo</div>
+              <div class="setting-desc">Send anonymous usage statistics (no content)</div>
+            </div>
+            <div class="toggle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELP VIEW -->
+    <div id="view-help" class="view">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Help</h1>
+          <p class="page-subtitle">Documentation and support.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:8px;">Documentation</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Learn how to use Litigo, create rules, and understand the architecture.</p>
+        <button class="btn btn-secondary">Open documentation</button>
+      </div>
+      <div class="card">
+        <div style="font-weight:600;margin-bottom:8px;">About Litigo</div>
+        <p style="color:var(--muted);font-size:13px;">Version 1.0.0</p>
+        <p style="color:var(--muted);font-size:13px;margin-top:4px;">Rule engine: Moss semantic engine (local)</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      // Navigation
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+          document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+          this.classList.add('active');
+          const viewId = 'view-' + this.dataset.view;
+          const viewEl = document.getElementById(viewId);
+          if (viewEl) viewEl.classList.add('active');
+        });
+      });
+
+      // Toggle switches
+      document.querySelectorAll('.toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
