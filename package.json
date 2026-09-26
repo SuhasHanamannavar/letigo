@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "Litigo — AI Rule Enforcement. Your rules. Every chatbot.",
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
   "scripts": {
     "build": "npm run build:core && npm run build:extension && npm run build:web",
     "build:core": "cd packages/core && tsc",
