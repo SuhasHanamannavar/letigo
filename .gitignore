@@ -1,0 +1,125 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.vercel/
+.output/
+
+# Tauri / Desktop
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+*.msi
+*.exe
+*.dmg
+*.app
+*.deb
+*.rpm
+
+# Android
+apps/android/.gradle/
+apps/android/build/
+apps/android/app/build/
+apps/android/local.properties
+apps/android/.idea/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# iOS
+apps/ios/build/
+apps/ios/Pods/
+apps/ios/*.xcworkspace/xcuserdata/
+apps/ios/*.xcodeproj/xcuserdata/
+apps/ios/DerivedData/
+*.ipa
+*.xcarchive
+
+# Chrome Extension
+apps/chrome-extension/dist/
+apps/chrome-extension/*.zip
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+
+# Secrets and credentials
+credentials.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+secrets/
+private/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.turbo/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Wasm artifacts (unless intentionally committed)
+*.wasm
+!**/assets/wasm/*.wasm
+!**/resources/wasm/*.wasm
+
+# Vercel
+.vercel
+
+# Rust
+Cargo.lock
+**/Cargo.lock

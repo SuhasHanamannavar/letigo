@@ -1,0 +1,32 @@
+{
+  "name": "litigo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Litigo — AI Rule Enforcement. Your rules. Every chatbot.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build:core && npm run build:extension && npm run build:web",
+    "build:core": "cd packages/core && tsc",
+    "build:extension": "cd apps/chrome-extension && npm run build",
+    "build:web": "cd apps/web && npm run build",
+    "build:desktop": "cd apps/desktop && npm run tauri build",
+    "dev:web": "cd apps/web && npm run dev",
+    "dev:extension": "cd apps/chrome-extension && npm run dev",
+    "dev:desktop": "cd apps/desktop && npm run tauri dev",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  }
+}

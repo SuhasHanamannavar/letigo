@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Litigo</string>
+    <string name="tagline">Your rules. Every chatbot.</string>
+    <string name="accessibility_service_label">Litigo Rule Enforcement</string>
+    <string name="accessibility_service_description">Litigo uses accessibility to detect supported chatbot apps and analyze AI responses for rule compliance. No data leaves your device.</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_rules">Rules</string>
+    <string name="nav_activity">Activity</string>
+    <string name="nav_chatbots">Chatbots</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Home -->
+    <string name="protection_active">Protection active</string>
+    <string name="compliance">Compliance</string>
+    <string name="rules_checked_today">Rules checked today</string>
+    <string name="violations_caught">Violations caught</string>
+    <string name="protected_conversations">Protected conversations</string>
+    <string name="protected_chatbots">Protected Chatbots</string>
+    <string name="recent_activity">Recent Activity</string>
+
+    <!-- Rules -->
+    <string name="create_rule">Create Rule</string>
+    <string name="rule_name">Rule name</string>
+    <string name="rule_description">Description</string>
+    <string name="rule_type">Rule type</string>
+    <string name="rule_priority">Priority</string>
+    <string name="priority_high">High</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_low">Low</string>
+
+    <!-- Status -->
+    <string name="status_passed">Passed</string>
+    <string name="status_warning">Warning</string>
+    <string name="status_violated">Violation</string>
+    <string name="status_enabled">Enabled</string>
+    <string name="status_disabled">Disabled</string>
+
+    <!-- Onboarding -->
+    <string name="welcome_to_litigo">Welcome to Litigo</string>
+    <string name="onboarding_step1_title">Choose protected chatbots</string>
+    <string name="onboarding_step2_title">Enable accessibility</string>
+    <string name="onboarding_step3_title">Create your first rule</string>
+    <string name="onboarding_step4_title">Litigo is active</string>
+
+    <!-- Permissions -->
+    <string name="permission_overlay_title">Display over other apps</string>
+    <string name="permission_overlay_desc">Required to show the floating Litigo indicator inside chatbot apps</string>
+    <string name="permission_accessibility_title">Accessibility access</string>
+    <string name="permission_accessibility_desc">Required to detect chatbot responses and evaluate them against your rules</string>
+
+    <!-- Settings -->
+    <string name="settings_general">General</string>
+    <string name="settings_protection">Protection</string>
+    <string name="settings_rules">Rules</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_account">Account</string>
+    <string name="settings_help">Help</string>
+    <string name="launch_at_startup">Launch at startup</string>
+    <string name="notifications">Notifications</string>
+    <string name="local_processing">Local processing only</string>
+    <string name="local_processing_desc">All rule evaluation happens on your device</string>
+</resources>

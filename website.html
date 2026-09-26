@@ -1,0 +1,775 @@
+<html style="margin:0;padding:0;">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+(function(){
+  var s = document.createElement('style');
+  s.textContent = ':root{--bg:#fafafa;--card:#ffffff;--text:#0a0a0a;--muted:#6b7280;--accent:#b45309;--accent-soft:rgba(180,83,9,.10);--accent2:#1f2937;--accent2-soft:rgba(31,41,55,.08);--border:rgba(10,10,10,.08);--success:#166534;--success-soft:rgba(22,101,52,.10);--warning:#92400e;--warning-soft:rgba(146,64,14,.10);--error:#991b1b;--error-soft:rgba(153,27,27,.10)}*{box-sizing:border-box}body{margin:0;font-family:"Archivo",sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6}.reveal{opacity:0;transform:translateY(16px);animation:fadeUp .6s ease forwards}.reveal:nth-child(2){animation-delay:.08s}.reveal:nth-child(3){animation-delay:.16s}.reveal:nth-child(4){animation-delay:.24s}.reveal:nth-child(5){animation-delay:.32s}.reveal:nth-child(6){animation-delay:.4s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}.nav-link{color:var(--muted);transition:color .15s ease;text-decoration:none;font-size:14px;font-weight:500}.nav-link:hover{color:var(--text)}.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--text);color:var(--bg);border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .15s ease,transform .15s ease}.btn-primary:hover{opacity:.9;transform:translateY(-1px)}.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:border-color .15s ease,background .15s ease}.btn-secondary:hover{border-color:var(--text);background:var(--card)}.card{background:var(--card);border:1px solid var(--border);border-radius:12px;transition:border-color .2s ease,box-shadow .2s ease}.card:hover{border-color:rgba(10,10,10,.16);box-shadow:0 4px 24px rgba(0,0,0,.04)}.section-title{font-size:32px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:12px}.section-sub{color:var(--muted);font-size:16px;max-width:560px;line-height:1.6}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px;display:block}.platform-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--text);background:var(--card)}.rule-item{padding:16px 20px;border:1px solid var(--border);border-radius:10px;background:var(--card);transition:border-color .15s ease}.rule-item:hover{border-color:rgba(10,10,10,.18)}.chatbot-card{padding:20px;border:1px solid var(--border);border-radius:10px;background:var(--card);text-align:center;transition:border-color .15s ease,transform .15s ease}.chatbot-card:hover{border-color:rgba(10,10,10,.18);transform:translateY(-2px)}.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block}.faq-item{border-bottom:1px solid var(--border)}.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;background:none;border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:600;color:var(--text);text-align:left}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;color:var(--muted);font-size:14px;line-height:1.7}.faq-a.open{max-height:300px;padding-bottom:20px}.faq-icon{transition:transform .3s ease;color:var(--muted)}.faq-icon.open{transform:rotate(45deg)}.download-card{padding:24px;border:1px solid var(--border);border-radius:12px;background:var(--card);transition:border-color .2s ease,box-shadow .2s ease}.download-card:hover{border-color:rgba(10,10,10,.18);box-shadow:0 4px 20px rgba(0,0,0,.04)}.step-num{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--text);flex-shrink:0}.divider{height:1px;background:var(--border);width:100%}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}.activity-row{display:grid;grid-template-columns:80px 1fr auto;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center;font-size:14px}.activity-row:last-child{border-bottom:none}.compliance-ring{transform:rotate(-90deg)}.tab-btn{padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s ease;font-family:inherit}.tab-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}.tab-content{display:none}.tab-content.active{display:block}.hero-product{position:relative;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 20px 60px rgba(0,0,0,.08)}.window-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--border)}.window-dot{width:10px;height:10px;border-radius:50%}.chat-bubble-user{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:12px 16px;max-width:80%;margin-left:auto}.chat-bubble-ai{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;max-width:85%}.litigo-indicator{position:absolute;top:60px;right:16px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,.08);font-size:12px}.rule-pass{color:var(--success)}.rule-warn{color:var(--warning)}.rule-fail{color:var(--error)}.privacy-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}.privacy-cell{padding:20px;background:var(--card)}.cross-platform-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}@media(max-width:768px){.cross-platform-grid{grid-template-columns:repeat(2,1fr)}.activity-row{grid-template-columns:60px 1fr}.privacy-grid{grid-template-columns:1fr}}';
+  document.head.appendChild(s);
+})();
+</script>
+<div style="background-color:transparent;box-sizing:border-box;">
+<div style="background:var(--bg);min-height:100%;font-family:'Archivo',sans-serif;">
+
+  <!-- NAVIGATION -->
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(250,250,250,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);">
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;">
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="#" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 2L3 7v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V7l-9-5z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <span style="font-weight:700;font-size:17px;letter-spacing:-.01em;">Litigo</span>
+        </a>
+        <div style="display:flex;gap:24px;align-items:center;">
+          <a href="#product" class="nav-link">Product</a>
+          <a href="#how" class="nav-link">How it works</a>
+          <a href="#platforms" class="nav-link">Platforms</a>
+          <a href="#privacy" class="nav-link">Privacy</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="#" class="nav-link" style="display:none;">Sign in</a>
+        <a href="#download" class="btn-primary">Get Litigo</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="max-width:1200px;margin:0 auto;padding:100px 24px 80px;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
+      <span class="eyebrow">AI Rule Enforcement</span>
+      <h1 style="font-size:64px;font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0 0 20px;">
+        Your rules.<br>
+        <span style="color:var(--muted);">Every chatbot.</span>
+      </h1>
+      <p style="font-size:19px;color:var(--muted);max-width:560px;margin:0 auto 36px;line-height:1.6;">
+        Define your AI rules once. Litigo keeps them enforced across the chatbots you use — quietly, precisely, and locally.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;">
+        <a href="#download" class="btn-primary">
+          Get Litigo
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#product" class="btn-secondary">See how it works</a>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+        <span class="platform-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+          Chrome
+        </span>
+        <span class="platform-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+          Windows
+        </span>
+        <span class="platform-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c3 0 5 2 5 5s-2 5-5 5-5-2-5-5 2-5 5-5z"/><path d="M20 22c0-4-4-7-8-7s-8 3-8 7"/></svg>
+          macOS
+        </span>
+        <span class="platform-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          Android
+        </span>
+        <span class="platform-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          iPhone
+        </span>
+      </div>
+    </div>
+
+    <!-- HERO PRODUCT DEMO -->
+    <div class="reveal" style="max-width:900px;margin:0 auto;">
+      <div class="hero-product">
+        <div class="window-bar">
+          <div class="window-dot" style="background:#ff5f57;"></div>
+          <div class="window-dot" style="background:#febc2e;"></div>
+          <div class="window-dot" style="background:#28c840;"></div>
+          <div style="flex:1;text-align:center;font-size:12px;color:var(--muted);">chat.openai.com</div>
+        </div>
+        <div style="padding:28px;position:relative;min-height:380px;">
+          <div class="chat-bubble-user" style="margin-bottom:20px;">
+            <span style="font-size:14px;color:var(--text);">Explain the benefits of renewable energy sources.</span>
+          </div>
+          <div class="chat-bubble-ai" style="margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;">ChatGPT</div>
+            <p style="font-size:14px;color:var(--text);margin:0 0 10px;line-height:1.6;">Renewable energy offers several key advantages. First, it produces minimal greenhouse gas emissions, helping combat climate change. Second, sources like solar and wind are infinite and will not deplete over time. Third, renewable systems can reduce dependence on imported fuels and stabilize energy prices. Finally, distributed generation can improve grid resilience and create local employment opportunities in manufacturing and installation.</p>
+          </div>
+
+          <!-- Litigo Indicator -->
+          <div class="litigo-indicator" style="min-width:200px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="status-dot" style="background:var(--success);"></span>
+              <span style="font-weight:700;color:var(--text);">Litigo Active</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+              <span style="font-size:22px;font-weight:700;color:var(--text);">93%</span>
+              <span style="font-size:11px;color:var(--muted);">Compliance</span>
+            </div>
+            <div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:10px;">
+              <div style="height:100%;width:93%;background:var(--success);border-radius:2px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:5px;font-size:11px;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="rule-pass">✓</span>
+                <span style="color:var(--muted);">Bullet points</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="rule-pass">✓</span>
+                <span style="color:var(--muted);">Citation</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="rule-warn">⚠</span>
+                <span style="color:var(--warning);font-weight:500;">Word limit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:16px;">Litigo runs alongside your chatbots — no workflow changes required.</p>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
+      <span class="eyebrow">How Litigo works</span>
+      <h2 class="section-title">Four steps. Zero friction.</h2>
+      <p class="section-sub" style="margin:0 auto;">Litigo integrates quietly into your existing workflow. You keep using the same chatbots the same way.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;" class="reveal">
+      <div>
+        <div class="step-num" style="margin-bottom:16px;">1</div>
+        <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;">Create your rules</h3>
+        <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.6;">Define rules once — word limits, formatting requirements, citation policies, tone guidelines.</p>
+      </div>
+      <div>
+        <div class="step-num" style="margin-bottom:16px;">2</div>
+        <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;">Open your chatbot</h3>
+        <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.6;">Use ChatGPT, Claude, Gemini, or any supported chatbot normally. Litigo detects the environment automatically.</p>
+      </div>
+      <div>
+        <div class="step-num" style="margin-bottom:16px;">3</div>
+        <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;">Litigo checks responses</h3>
+        <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.6;">Every AI response is evaluated against your active rules locally, in real time.</p>
+      </div>
+      <div>
+        <div class="step-num" style="margin-bottom:16px;">4</div>
+        <h3 style="font-size:17px;font-weight:700;margin:0 0 8px;">See compliance</h3>
+        <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.6;">A subtle indicator shows compliance score, passed rules, and any violations requiring attention.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- RULES -->
+  <section id="product" style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div class="reveal">
+        <span class="eyebrow">Rules</span>
+        <h2 class="section-title">Rules are the product.</h2>
+        <p class="section-sub" style="margin-bottom:32px;">Create, organize, and prioritize rules that matter to you. Each rule tracks violations across every chatbot it protects.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="rule-item">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="status-dot" style="background:var(--success);"></span>
+                <span style="font-weight:600;font-size:14px;">"Keep answers under 50 words"</span>
+              </div>
+              <span class="mono" style="font-size:12px;color:var(--muted);">12 violations</span>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="status-dot" style="background:var(--success);"></span>
+                <span style="font-weight:600;font-size:14px;">"Always use bullet points"</span>
+              </div>
+              <span class="mono" style="font-size:12px;color:var(--muted);">4 violations</span>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="status-dot" style="background:var(--success);"></span>
+                <span style="font-weight:600;font-size:14px;">"Always cite sources"</span>
+              </div>
+              <span class="mono" style="font-size:12px;color:var(--muted);">27 violations</span>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="status-dot" style="background:var(--muted);"></span>
+                <span style="font-weight:600;font-size:14px;color:var(--muted);">"Use simple language"</span>
+              </div>
+              <span class="mono" style="font-size:12px;color:var(--muted);">Disabled</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;justify-content:center;">
+        <div class="card" style="padding:28px;max-width:420px;width:100%;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Rule Details</span>
+            <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--success-soft);color:var(--success);font-weight:600;">Enabled</span>
+          </div>
+          <h3 style="font-size:18px;font-weight:700;margin:0 0 20px;line-height:1.35;">"Keep answers under 50 words"</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div>
+              <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Applied to</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <span style="font-size:12px;padding:4px 10px;border:1px solid var(--border);border-radius:6px;">ChatGPT</span>
+                <span style="font-size:12px;padding:4px 10px;border:1px solid var(--border);border-radius:6px;">Claude</span>
+                <span style="font-size:12px;padding:4px 10px;border:1px solid var(--border);border-radius:6px;">Gemini</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div>
+                <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">Violations</div>
+                <div style="font-size:24px;font-weight:700;">12</div>
+              </div>
+              <div>
+                <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">Priority</div>
+                <div style="font-size:24px;font-weight:700;">High</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Last triggered</div>
+              <div style="font-size:14px;">Today, 10:28 PM — Claude</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- REAL-TIME ENFORCEMENT -->
+  <section style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
+      <span class="eyebrow">Real-time enforcement</span>
+      <h2 class="section-title">See violations before they become problems.</h2>
+      <p class="section-sub" style="margin:0 auto;">Litigo analyzes every response automatically. No copy-pasting, no manual checks.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="reveal">
+      <div class="card" style="padding:28px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+          <span class="status-dot" style="background:var(--error);"></span>
+          <span style="font-size:12px;font-weight:700;color:var(--error);text-transform:uppercase;letter-spacing:.08em;">Without Litigo</span>
+        </div>
+        <div style="padding:16px;border:1px dashed var(--border);border-radius:8px;background:var(--bg);margin-bottom:16px;">
+          <p style="font-size:14px;color:var(--text);margin:0;line-height:1.6;">Renewable energy is fundamentally changing how societies approach power generation and consumption. Solar photovoltaic technology has seen dramatic cost reductions over the past two decades, making it increasingly competitive with fossil fuels. Wind energy, both onshore and offshore, continues to expand its capacity factor through improved turbine design and siting strategies. Geothermal and tidal systems offer baseload capabilities that complement intermittent sources.</p>
+        </div>
+        <div style="font-size:13px;color:var(--muted);">
+          <span style="color:var(--error);font-weight:600;">Violates:</span> "Keep answers under 50 words" — Detected 73 words
+        </div>
+      </div>
+      <div class="card" style="padding:28px;border-color:var(--success);box-shadow:0 0 0 1px var(--success-soft);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+          <span class="status-dot" style="background:var(--success);"></span>
+          <span style="font-size:12px;font-weight:700;color:var(--success);text-transform:uppercase;letter-spacing:.08em;">With Litigo</span>
+        </div>
+        <div style="padding:16px;border:1px solid var(--border);border-radius:8px;background:var(--bg);margin-bottom:16px;">
+          <p style="font-size:14px;color:var(--text);margin:0;line-height:1.6;">Renewable energy is fundamentally changing how societies approach power generation and consumption. Solar photovoltaic technology has seen dramatic cost reductions...</p>
+        </div>
+        <div style="padding:14px;background:var(--warning-soft);border-radius:8px;border:1px solid rgba(146,64,14,.2);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="color:var(--warning);">⚠</span>
+            <span style="font-size:13px;font-weight:700;color:var(--warning);">Rule violation detected</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);">
+            <strong>Rule:</strong> "Keep answers under 50 words"<br>
+            <strong>Detected:</strong> 73 words · <strong>Status:</strong> Violation
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- COMPLIANCE -->
+  <section style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center;">
+      <div class="reveal">
+        <span class="eyebrow">Compliance</span>
+        <h2 class="section-title">A clear score. Quiet confidence.</h2>
+        <p class="section-sub" style="margin-bottom:24px;">The compliance score summarizes how well responses match your active rules. It's a status indicator, not a spectacle.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="rule-pass" style="font-weight:700;">✓</span>
+            <span style="font-size:14px;">Passed rules contribute to your score</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="rule-warn" style="font-weight:700;">⚠</span>
+            <span style="font-size:14px;">Warnings flag partial or borderline matches</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="rule-fail" style="font-weight:700;">✗</span>
+            <span style="font-size:14px;">Violations are clearly identified and explained</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;justify-content:center;">
+        <div class="card" style="padding:40px;width:100%;max-width:460px;">
+          <div style="text-align:center;margin-bottom:32px;">
+            <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;">Today's Compliance</div>
+            <div style="position:relative;width:180px;height:180px;margin:0 auto;">
+              <svg class="compliance-ring" width="180" height="180" viewBox="0 0 180 180">
+                <circle cx="90" cy="90" r="76" fill="none" stroke="var(--border)" stroke-width="10"/>
+                <circle cx="90" cy="90" r="76" fill="none" stroke="var(--success)" stroke-width="10" stroke-linecap="round" stroke-dasharray="477.5" stroke-dashoffset="33.4"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                <span style="font-size:42px;font-weight:700;line-height:1;">93%</span>
+                <span style="font-size:12px;color:var(--muted);margin-top:4px;">Compliance</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-radius:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="rule-pass">✓</span>
+                <span style="font-size:13px;">Word limit</span>
+              </div>
+              <span style="font-size:12px;color:var(--success);font-weight:600;">Passed</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-radius:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="rule-pass">✓</span>
+                <span style="font-size:13px;">Bullet formatting</span>
+              </div>
+              <span style="font-size:12px;color:var(--success);font-weight:600;">Passed</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-radius:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="rule-pass">✓</span>
+                <span style="font-size:13px;">Citation requirement</span>
+              </div>
+              <span style="font-size:12px;color:var(--success);font-weight:600;">Passed</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--warning-soft);border-radius:8px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="rule-warn">⚠</span>
+                <span style="font-size:13px;">Tone requirement</span>
+              </div>
+              <span style="font-size:12px;color:var(--warning);font-weight:600;">Warning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- SUPPORTED CHATBOTS -->
+  <section style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow">Supported chatbots</span>
+      <h2 class="section-title">Works where you already work.</h2>
+      <p class="section-sub" style="margin:0 auto;">Litigo protects the AI chatbots you use every day. The adapter architecture allows adding more at any time.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;" class="reveal">
+      <div class="chatbot-card">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;font-size:14px;">C</div>
+        <div style="font-size:14px;font-weight:600;">ChatGPT</div>
+        <div style="font-size:11px;color:var(--success);margin-top:4px;">● Enabled</div>
+      </div>
+      <div class="chatbot-card">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;font-size:14px;">Cl</div>
+        <div style="font-size:14px;font-weight:600;">Claude</div>
+        <div style="font-size:11px;color:var(--success);margin-top:4px;">● Enabled</div>
+      </div>
+      <div class="chatbot-card">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;font-size:14px;">G</div>
+        <div style="font-size:14px;font-weight:600;">Gemini</div>
+        <div style="font-size:11px;color:var(--success);margin-top:4px;">● Enabled</div>
+      </div>
+      <div class="chatbot-card">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;font-size:14px;">P</div>
+        <div style="font-size:14px;font-weight:600;">Perplexity</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">○ Disabled</div>
+      </div>
+      <div class="chatbot-card">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;font-size:14px;">Co</div>
+        <div style="font-size:14px;font-weight:600;">Copilot</div>
+        <div style="font-size:11px;color:var(--success);margin-top:4px;">● Enabled</div>
+      </div>
+      <div class="chatbot-card">
+        <div style="width:40px;height:40px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700;font-size:14px;">Gr</div>
+        <div style="font-size:14px;font-weight:600;">Grok</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">○ Disabled</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- CROSS-PLATFORM -->
+  <section id="platforms" style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow">Cross-platform</span>
+      <h2 class="section-title">One product. Every device you use.</h2>
+      <p class="section-sub" style="margin:0 auto;">Your rules follow you across desktop, mobile, and browser. Create once, enforce everywhere.</p>
+    </div>
+    <div class="cross-platform-grid reveal">
+      <div class="card" style="padding:24px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 14px;color:var(--text);"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Windows</div>
+        <div style="font-size:12px;color:var(--muted);">System tray · Background</div>
+      </div>
+      <div class="card" style="padding:24px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 14px;color:var(--text);"><path d="M12 2c3 0 5 2 5 5s-2 5-5 5-5-2-5-5 2-5 5-5z"/><path d="M20 22c0-4-4-7-8-7s-8 3-8 7"/></svg>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px;">macOS</div>
+        <div style="font-size:12px;color:var(--muted);">Menu bar · Accessibility</div>
+      </div>
+      <div class="card" style="padding:24px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 14px;color:var(--text);"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Android</div>
+        <div style="font-size:12px;color:var(--muted);">Floating overlay</div>
+      </div>
+      <div class="card" style="padding:24px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 14px;color:var(--text);"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px;">iPhone</div>
+        <div style="font-size:12px;color:var(--muted);">Keyboard extension</div>
+      </div>
+      <div class="card" style="padding:24px;text-align:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 14px;color:var(--text);"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px;">Chrome</div>
+        <div style="font-size:12px;color:var(--muted);">Extension · MV3</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- PRIVACY -->
+  <section id="privacy" style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow">Privacy</span>
+      <h2 class="section-title">Built local. By design.</h2>
+      <p class="section-sub" style="margin:0 auto;">Litigo's semantic engine runs locally through WebAssembly. Your conversation content stays on your device.</p>
+    </div>
+    <div class="privacy-grid reveal">
+      <div class="privacy-cell">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M12 2L3 7v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span style="font-size:12px;font-weight:700;color:var(--success);text-transform:uppercase;letter-spacing:.08em;">Local Processing</span>
+        </div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Rule matching</div>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.6;">All rule evaluation happens on-device using the Moss semantic engine compiled to WebAssembly.</p>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Compliance analysis</div>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.6;">Response scoring and violation detection never leave your machine.</p>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Stored rule data</div>
+        <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.6;">Your rules and preferences are stored locally with optional encrypted sync.</p>
+      </div>
+      <div class="privacy-cell">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg>
+          <span style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;">Cloud, only when required</span>
+        </div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Authentication</div>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.6;">Account sign-in uses standard secure authentication protocols.</p>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Subscription</div>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;line-height:1.6;">Payment processing is handled by established payment providers.</p>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;">Optional synchronization</div>
+        <p style="font-size:13px;color:var(--muted);margin:0;line-height:1.6;">Cross-device rule sync is end-to-end encrypted and entirely opt-in.</p>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:20px;">Conversation content is never transmitted to Litigo servers.</p>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- ACTIVITY -->
+  <section style="max-width:1000px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow">Activity</span>
+      <h2 class="section-title">A complete audit trail.</h2>
+      <p class="section-sub" style="margin:0 auto;">See exactly when rules were checked, passed, or violated across every chatbot.</p>
+    </div>
+    <div class="card reveal" style="padding:28px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Today</div>
+        <div style="display:flex;gap:6px;">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="passed">Passed</button>
+          <button class="tab-btn" data-filter="violation">Violations</button>
+        </div>
+      </div>
+      <div id="activity-list">
+        <div class="activity-row" data-type="passed">
+          <span class="mono" style="color:var(--muted);font-size:12px;">10:32 PM</span>
+          <div>
+            <span style="font-weight:600;">ChatGPT</span>
+            <span style="color:var(--muted);margin:0 8px;">·</span>
+            <span>"Use bullet points"</span>
+          </div>
+          <span style="font-size:12px;padding:3px 10px;border-radius:20px;background:var(--success-soft);color:var(--success);font-weight:600;">Passed</span>
+        </div>
+        <div class="activity-row" data-type="violation">
+          <span class="mono" style="color:var(--muted);font-size:12px;">10:28 PM</span>
+          <div>
+            <span style="font-weight:600;">Claude</span>
+            <span style="color:var(--muted);margin:0 8px;">·</span>
+            <span>"Keep answers under 50 words"</span>
+          </div>
+          <span style="font-size:12px;padding:3px 10px;border-radius:20px;background:var(--error-soft);color:var(--error);font-weight:600;">Violation</span>
+        </div>
+        <div class="activity-row" data-type="passed">
+          <span class="mono" style="color:var(--muted);font-size:12px;">9:51 PM</span>
+          <div>
+            <span style="font-weight:600;">Gemini</span>
+            <span style="color:var(--muted);margin:0 8px;">·</span>
+            <span>"Cite sources"</span>
+          </div>
+          <span style="font-size:12px;padding:3px 10px;border-radius:20px;background:var(--success-soft);color:var(--success);font-weight:600;">Passed</span>
+        </div>
+        <div class="activity-row" data-type="passed">
+          <span class="mono" style="color:var(--muted);font-size:12px;">9:14 PM</span>
+          <div>
+            <span style="font-weight:600;">ChatGPT</span>
+            <span style="color:var(--muted);margin:0 8px;">·</span>
+            <span>"Professional tone"</span>
+          </div>
+          <span style="font-size:12px;padding:3px 10px;border-radius:20px;background:var(--success-soft);color:var(--success);font-weight:600;">Passed</span>
+        </div>
+        <div class="activity-row" data-type="violation">
+          <span class="mono" style="color:var(--muted);font-size:12px;">8:47 PM</span>
+          <div>
+            <span style="font-weight:600;">Copilot</span>
+            <span style="color:var(--muted);margin:0 8px;">·</span>
+            <span>"No technical jargon"</span>
+          </div>
+          <span style="font-size:12px;padding:3px 10px;border-radius:20px;background:var(--error-soft);color:var(--error);font-weight:600;">Violation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- DOWNLOAD -->
+  <section id="download" style="max-width:1200px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow">Download</span>
+      <h2 class="section-title">Get Litigo for your platform.</h2>
+      <p class="section-sub" style="margin:0 auto;">Choose the version that matches your device. All platforms share the same rules engine.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;" class="reveal">
+      <div class="download-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:14px;color:var(--text);"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Windows</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Windows 10/11 · x64</div>
+        <a href="#" class="btn-primary" style="padding:10px 16px;font-size:13px;width:100%;justify-content:center;">Download</a>
+      </div>
+      <div class="download-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:14px;color:var(--text);"><path d="M12 2c3 0 5 2 5 5s-2 5-5 5-5-2-5-5 2-5 5-5z"/><path d="M20 22c0-4-4-7-8-7s-8 3-8 7"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">macOS</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">12+ · Universal</div>
+        <a href="#" class="btn-primary" style="padding:10px 16px;font-size:13px;width:100%;justify-content:center;">Download</a>
+      </div>
+      <div class="download-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:14px;color:var(--text);"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Android</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">APK · 9.0+</div>
+        <a href="#" class="btn-primary" style="padding:10px 16px;font-size:13px;width:100%;justify-content:center;">Download APK</a>
+      </div>
+      <div class="download-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:14px;color:var(--text);"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">iPhone</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">iOS 16+ · App Store</div>
+        <a href="#" class="btn-secondary" style="padding:10px 16px;font-size:13px;width:100%;justify-content:center;">Coming soon</a>
+      </div>
+      <div class="download-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom:14px;color:var(--text);"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Chrome</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Extension · MV3</div>
+        <a href="#" class="btn-primary" style="padding:10px 16px;font-size:13px;width:100%;justify-content:center;">Add to Chrome</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- FAQ -->
+  <section id="faq" style="max-width:800px;margin:0 auto;padding:100px 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title">Questions, answered.</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What is Litigo?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Litigo is a cross-platform tool that lets you define rules once and enforce them across AI chatbot conversations. It runs alongside ChatGPT, Claude, Gemini, and other supported chatbots, analyzing responses in real time and showing compliance status and any violations.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Which chatbots are supported?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Litigo currently supports ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, and Grok. The adapter architecture is designed to allow additional chatbot integrations to be added without rewriting the core engine.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How do rules work?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Rules are user-defined constraints that AI responses must satisfy. Examples include word limits, formatting requirements, citation policies, and tone guidelines. Each rule can be enabled or disabled, prioritized, and applied to specific chatbots.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Does Litigo read my conversations?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Litigo analyzes chatbot responses locally on your device to evaluate them against your rules. The analysis happens on-device through WebAssembly. Conversation content is never transmitted to Litigo servers unless you explicitly enable optional features that require it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Where is data processed?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Rule matching, compliance analysis, and semantic evaluation are all processed locally. Cloud services are used only for authentication, subscription management, and optional end-to-end encrypted cross-device synchronization — never for conversation content.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What platforms are supported?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">Litigo is available as a Chrome extension, Windows desktop app, macOS desktop app, Android app, and iPhone app. Each platform uses native system mechanisms appropriate to that OS — system tray on Windows, menu bar on macOS, floating overlay on Android, and keyboard extension on iOS.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How does the Chrome extension work?</span>
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a">The Chrome extension uses Manifest V3 and a chatbot adapter architecture. Each supported chatbot has a dedicated adapter that handles detection, response observation, UI injection, and rule evaluation — keeping site-specific logic isolated and maintainable.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="max-width:1200px;margin:0 auto;"></div>
+
+  <!-- FINAL CTA -->
+  <section style="max-width:1200px;margin:0 auto;padding:120px 24px;text-align:center;">
+    <div class="reveal">
+      <h2 style="font-size:44px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin:0 0 16px;">
+        Your rules, applied everywhere.
+      </h2>
+      <p style="font-size:17px;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.6;">
+        Start enforcing AI rules across your chatbots today. Quietly. Precisely. Locally.
+      </p>
+      <a href="#download" class="btn-primary" style="padding:14px 28px;font-size:15px;">
+        Get Litigo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--border);">
+    <div style="max-width:1200px;margin:0 auto;padding:60px 24px 40px;">
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L3 7v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span style="font-weight:700;font-size:16px;">Litigo</span>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;max-width:280px;">AI rule enforcement across every chatbot you use. Simple, fast, quiet, precise, trustworthy.</p>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;">Product</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#product" style="font-size:13px;color:var(--muted);text-decoration:none;">Features</a>
+            <a href="#platforms" style="font-size:13px;color:var(--muted);text-decoration:none;">Platforms</a>
+            <a href="#download" style="font-size:13px;color:var(--muted);text-decoration:none;">Download</a>
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">Pricing</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;">Resources</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">Documentation</a>
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">Architecture</a>
+            <a href="#privacy" style="font-size:13px;color:var(--muted);text-decoration:none;">Privacy</a>
+            <a href="#faq" style="font-size:13px;color:var(--muted);text-decoration:none;">FAQ</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;">Company</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">About</a>
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">Contact</a>
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">GitHub</a>
+            <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none;">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);">
+        <span style="font-size:12px;color:var(--muted);">© 2026 Litigo. All rights reserved.</span>
+        <span style="font-size:12px;color:var(--muted);">Built for trust. Processed locally.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  // FAQ toggle
+  window.toggleFaq = function(btn) {
+    var a = btn.nextElementSibling;
+    var icon = btn.querySelector('.faq-icon');
+    var isOpen = a.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(el){ el.classList.remove('open'); });
+    document.querySelectorAll('.faq-icon').forEach(function(el){ el.classList.remove('open'); });
+    if (!isOpen) {
+      a.classList.add('open');
+      icon.classList.add('open');
+    }
+  };
+
+  // Activity filter tabs
+  var tabs = document.querySelectorAll('.tab-btn');
+  var rows = document.querySelectorAll('.activity-row');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      var filter = tab.getAttribute('data-filter');
+      rows.forEach(function(row) {
+        if (filter === 'all' || row.getAttribute('data-type') === filter) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (href.length > 1) {
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+})();
+</script>
+</html>

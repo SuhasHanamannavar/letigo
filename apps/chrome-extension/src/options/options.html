@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Litigo — Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #0a0a0a;
+      --muted: #6b7280;
+      --accent: #b45309;
+      --accent-soft: rgba(180,83,9,.10);
+      --border: rgba(10,10,10,.08);
+      --success: #166534;
+      --success-soft: rgba(22,101,52,.10);
+      --warning: #92400e;
+      --warning-soft: rgba(146,64,14,.10);
+      --error: #991b1b;
+      --error-soft: rgba(153,27,27,.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Archivo', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 220px;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+      flex-shrink: 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .brand-name {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -.01em;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color .15s ease, background .15s ease;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(10,10,10,.03);
+    }
+    .nav-item.active {
+      color: var(--text);
+      background: var(--accent-soft);
+      border-right: 2px solid var(--accent);
+    }
+    .main {
+      flex: 1;
+      padding: 40px 48px;
+      max-width: 900px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .rule-card {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .rule-main {
+      flex: 1;
+    }
+    .rule-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .rule-desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .rule-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .rule-priority {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .priority-high { background: var(--error-soft); color: var(--error); }
+    .priority-medium { background: var(--warning-soft); color: var(--warning); }
+    .priority-low { background: rgba(107,114,128,.12); color: var(--muted); }
+    .rule-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all .15s ease;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .btn-primary:hover { opacity: .9; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .btn-ghost:hover { color: var(--text); background: rgba(10,10,10,.04); }
+    .btn-danger {
+      color: var(--error);
+    }
+    .btn-danger:hover { background: var(--error-soft); }
+    .toggle {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      background: rgba(107,114,128,.3);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background .15s ease;
+      flex-shrink: 0;
+    }
+    .toggle.active { background: var(--success); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: transform .15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    .toggle.active::after { transform: translateX(16px); }
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--muted);
+    }
+    .empty-state-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      opacity: .3;
+    }
+    .chatbot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .chatbot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .chatbot-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .chatbot-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .chatbot-status {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .setting-row:last-child { border-bottom: none; }
+    .setting-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .setting-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .view { display: none; }
+    .view.active { display: block; }
+    .activity-item {
+      display: grid;
+      grid-template-columns: 80px 120px 1fr auto;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      font-size: 13px;
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-time { color: var(--muted); font-family: ui-monospace, monospace; font-size: 12px; }
+    .activity-chatbot { font-weight: 500; }
+    .activity-rule { color: var(--text); }
+    .activity-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .result-passed { background: var(--success-soft); color: var(--success); }
+    .result-warning { background: var(--warning-soft); color: var(--warning); }
+    .result-violated { background: var(--error-soft); color: var(--error); }
+    .mono { font-family: ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.4);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    }
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color .15s ease;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      padding: 10px 16px;
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all .15s ease;
+    }
+    .tab-btn.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M12 2L3 7v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V7l-9-5z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+        <span class="brand-name">Litigo</span>
+      </div>
+      <button class="nav-item active" data-view="rules">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Rules
+      </button>
+      <button class="nav-item" data-view="chatbots">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Chatbots
+      </button>
+      <button class="nav-item" data-view="activity">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Activity
+      </button>
+      <button class="nav-item" data-view="settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+      <button class="nav-item" data-view="account">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Account
+      </button>
+    </aside>
+
+    <main class="main">
+      <!-- Rules View -->
+      <div id="view-rules" class="view active">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+          <div>
+            <h1 class="page-title">Rules</h1>
+            <p class="page-subtitle">Define once. Enforce everywhere.</p>
+          </div>
+          <button class="btn btn-primary" id="btnNewRule">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            New Rule
+          </button>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Active Rules</div>
+          <div id="rulesList"></div>
+        </div>
+      </div>
+
+      <!-- Chatbots View -->
+      <div id="view-chatbots" class="view">
+        <h1 class="page-title">Protected Chatbots</h1>
+        <p class="page-subtitle">Litigo operates only within these chatbot environments.</p>
+        <div id="chatbotsGrid" class="chatbot-grid"></div>
+      </div>
+
+      <!-- Activity View -->
+      <div id="view-activity" class="view">
+        <h1 class="page-title">Activity</h1>
+        <p class="page-subtitle">Complete audit trail of rule checks and violations.</p>
+        <div id="activityList"></div>
+      </div>
+
+      <!-- Settings View -->
+      <div id="view-settings" class="view">
+        <h1 class="page-title">Settings</h1>
+        <p class="page-subtitle">Configure how Litigo behaves across your devices.</p>
+
+        <div class="section">
+          <div class="section-title">General</div>
+          <div class="card">
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Notifications</div>
+                <div class="setting-desc">Show browser notifications for rule violations</div>
+              </div>
+              <div class="toggle active" data-setting="notifications"></div>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Appearance</div>
+                <div class="setting-desc">Interface theme</div>
+              </div>
+              <select class="form-select" style="width:auto;">
+                <option>System</option>
+                <option>Light</option>
+                <option>Dark</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Protection</div>
+          <div class="card">
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Automatic detection</div>
+                <div class="setting-desc">Automatically detect supported chatbot websites</div>
+              </div>
+              <div class="toggle active" data-setting="autoDetection"></div>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Enforcement behavior</div>
+                <div class="setting-desc">How Litigo responds to violations</div>
+              </div>
+              <select class="form-select" style="width:auto;">
+                <option>Indicate only</option>
+                <option>Show warning</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Privacy</div>
+          <div class="card">
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Local processing only</div>
+                <div class="setting-desc">All rule evaluation happens on your device</div>
+              </div>
+              <span style="color:var(--success);font-size:12px;font-weight:600;">Always enabled</span>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Help improve Litigo</div>
+                <div class="setting-desc">Send anonymous usage statistics (no content)</div>
+              </div>
+              <div class="toggle" data-setting="telemetry"></div>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Retain activity for</div>
+                <div class="setting-desc">Automatically delete old activity records</div>
+              </div>
+              <select class="form-select" style="width:auto;">
+                <option>7 days</option>
+                <option selected>30 days</option>
+                <option>90 days</option>
+                <option>Forever</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account View -->
+      <div id="view-account" class="view">
+        <h1 class="page-title">Account</h1>
+        <p class="page-subtitle">Manage your Litigo account and subscription.</p>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+            <div style="width:48px;height:48px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:18px;">L</div>
+            <div>
+              <div style="font-weight:600;font-size:15px;">Not signed in</div>
+              <div style="color:var(--muted);font-size:13px;">Sign in to sync rules across devices</div>
+            </div>
+          </div>
+          <button class="btn btn-primary">Sign in</button>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="section-title" style="margin-bottom:12px;">Plan</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div>
+              <div style="font-weight:600;">Free</div>
+              <div style="color:var(--muted);font-size:13px;">Up to 10 rules, core enforcement features</div>
+            </div>
+            <button class="btn btn-secondary">Upgrade</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- New Rule Modal -->
+  <div class="modal-backdrop" id="ruleModal">
+    <div class="modal">
+      <h2 class="modal-title" id="modalTitle">Create New Rule</h2>
+      <form id="ruleForm">
+        <div class="form-group">
+          <label class="form-label">Rule Name</label>
+          <input type="text" class="form-input" id="ruleName" placeholder="e.g., Keep answers under 100 words" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="ruleDesc" placeholder="What does this rule enforce?"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Rule Type</label>
+          <select class="form-select" id="ruleType">
+            <option value="word_count">Word count limit</option>
+            <option value="formatting">Formatting requirement</option>
+            <option value="citation">Citation requirement</option>
+            <option value="tone">Tone guideline</option>
+            <option value="keyword_exclude">Exclude keywords</option>
+            <option value="keyword_require">Require keywords</option>
+            <option value="custom">Custom rule</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Priority</label>
+          <select class="form-select" id="rulePriority">
+            <option value="high">High</option>
+            <option value="medium" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Configuration</label>
+          <input type="text" class="form-input" id="ruleConfig" placeholder="e.g., 100 (for word count)">
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">Depends on rule type: max words, format name, etc.</div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="btnCancelRule">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Rule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ─── Navigation ─────────────────────────────────────────────
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+          document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+          this.classList.add('active');
+          const viewId = 'view-' + this.dataset.view;
+          document.getElementById(viewId).classList.add('active');
+        });
+      });
+
+      // ─── Toggle switches ───────────────────────────────────────
+      document.querySelectorAll('.toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+
+      // ─── Load Rules ────────────────────────────────────────────
+      function loadRules() {
+        chrome.storage.local.get(['litigo_rules'], function(data) {
+          const rules = data['litigo_rules'] || [];
+          const list = document.getElementById('rulesList');
+
+          if (rules.length === 0) {
+            list.innerHTML = `
+              <div class="empty-state">
+                <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                <div style="font-weight:600;margin-bottom:4px;">No rules yet</div>
+                <div style="font-size:13px;">Create your first rule to start enforcing AI output.</div>
+              </div>
+            `;
+            return;
+          }
+
+          list.innerHTML = rules.map(rule => `
+            <div class="card rule-card" data-rule-id="${rule.id}">
+              <div class="rule-main">
+                <div class="rule-name">${escapeHtml(rule.name)}</div>
+                ${rule.description ? `<div class="rule-desc">${escapeHtml(rule.description)}</div>` : ''}
+                <div class="rule-meta">
+                  <span class="rule-priority priority-${rule.priority}">${rule.priority}</span>
+                  <span>Type: ${rule.pattern.type.replace('_', ' ')}</span>
+                  <span>${rule.violationCount || 0} violations</span>
+                  <span class="mono">${rule.status === 'enabled' ? 'Enabled' : 'Disabled'}</span>
+                </div>
+              </div>
+              <div class="rule-actions">
+                <div class="toggle ${rule.status === 'enabled' ? 'active' : ''}" data-toggle-rule="${rule.id}"></div>
+                <button class="btn btn-ghost" data-edit-rule="${rule.id}">Edit</button>
+                <button class="btn btn-ghost btn-danger" data-delete-rule="${rule.id}">Delete</button>
+              </div>
+            </div>
+          `).join('');
+
+          // Attach toggle handlers
+          list.querySelectorAll('[data-toggle-rule]').forEach(el => {
+            el.addEventListener('click', function(e) {
+              e.stopPropagation();
+              this.classList.toggle('active');
+              const ruleId = this.dataset.toggleRule;
+              const rule = rules.find(r => r.id === ruleId);
+              if (rule) {
+                rule.status = this.classList.contains('active') ? 'enabled' : 'disabled';
+                chrome.storage.local.set({ ['litigo_rules']: rules });
+              }
+            });
+          });
+
+          // Delete handlers
+          list.querySelectorAll('[data-delete-rule]').forEach(el => {
+            el.addEventListener('click', function() {
+              const ruleId = this.dataset.deleteRule;
+              if (confirm('Delete this rule?')) {
+                const updated = rules.filter(r => r.id !== ruleId);
+                chrome.storage.local.set({ ['litigo_rules']: updated }, loadRules);
+              }
+            });
+          });
+        });
+      }
+
+      // ─── Load Chatbots ─────────────────────────────────────────
+      function loadChatbots() {
+        const defaults = [
+          { id: 'chatgpt', name: 'ChatGPT', enabled: true },
+          { id: 'claude', name: 'Claude', enabled: true },
+          { id: 'gemini', name: 'Gemini', enabled: true },
+          { id: 'perplexity', name: 'Perplexity', enabled: false },
+          { id: 'copilot', name: 'Microsoft Copilot', enabled: true },
+          { id: 'grok', name: 'Grok', enabled: false },
+        ];
+
+        chrome.storage.local.get(['litigo_chatbots'], function(data) {
+          const stored = data['litigo_chatbots'] || [];
+          const chatbots = defaults.map(d => {
+            const s = stored.find(x => x.id === d.id);
+            return s ? { ...d, enabled: s.enabled } : d;
+          });
+
+          document.getElementById('chatbotsGrid').innerHTML = chatbots.map(cb => `
+            <div class="chatbot-card">
+              <div class="chatbot-info">
+                <div class="chatbot-name">${cb.name}</div>
+                <div class="chatbot-status">${cb.enabled ? 'Protected' : 'Disabled'}</div>
+              </div>
+              <div class="toggle ${cb.enabled ? 'active' : ''}" data-chatbot="${cb.id}"></div>
+            </div>
+          `).join('');
+
+          document.querySelectorAll('[data-chatbot]').forEach(el => {
+            el.addEventListener('click', function() {
+              this.classList.toggle('active');
+              const id = this.dataset.chatbot;
+              const cb = chatbots.find(c => c.id === id);
+              if (cb) cb.enabled = this.classList.contains('active');
+              chrome.storage.local.set({ ['litigo_chatbots']: chatbots }, loadChatbots);
+            });
+          });
+        });
+      }
+
+      // ─── Load Activity ────────────────────────────────────────
+      function loadActivity() {
+        chrome.storage.local.get(['litigo_activity'], function(data) {
+          const activity = data['litigo_activity'] || [];
+          const list = document.getElementById('activityList');
+
+          if (activity.length === 0) {
+            list.innerHTML = `
+              <div class="empty-state">
+                <div style="font-weight:600;margin-bottom:4px;">No activity yet</div>
+                <div style="font-size:13px;">Activity will appear here once Litigo evaluates responses.</div>
+              </div>
+            `;
+            return;
+          }
+
+          list.innerHTML = activity.slice(0, 50).map(evt => {
+            const d = new Date(evt.timestamp);
+            const time = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return `
+              <div class="activity-item">
+                <span class="activity-time">${time}</span>
+                <span class="activity-chatbot">${escapeHtml(evt.chatbotName || '—')}</span>
+                <span class="activity-rule">${escapeHtml(evt.ruleName || '—')}</span>
+                <span class="activity-result result-${evt.result}">${capitalize(evt.result)}</span>
+              </div>
+            `;
+          }).join('');
+        });
+      }
+
+      // ─── Modal ────────────────────────────────────────────────
+      const modal = document.getElementById('ruleModal');
+      document.getElementById('btnNewRule').addEventListener('click', () => {
+        document.getElementById('modalTitle').textContent = 'Create New Rule';
+        document.getElementById('ruleForm').reset();
+        modal.classList.add('open');
+      });
+      document.getElementById('btnCancelRule').addEventListener('click', () => {
+        modal.classList.remove('open');
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('open');
+      });
+
+      document.getElementById('ruleForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('ruleName').value;
+        const desc = document.getElementById('ruleDesc').value;
+        const type = document.getElementById('ruleType').value;
+        const priority = document.getElementById('rulePriority').value;
+        const config = document.getElementById('ruleConfig').value;
+
+        let patternConfig = {};
+        switch (type) {
+          case 'word_count':
+            patternConfig = { maxWords: parseInt(config) || 100 };
+            break;
+          case 'formatting':
+            patternConfig = { format: config || 'bullet_points' };
+            break;
+          case 'citation':
+            patternConfig = { minCitations: parseInt(config) || 1 };
+            break;
+          case 'tone':
+            patternConfig = { tone: config || 'professional' };
+            break;
+          case 'keyword_exclude':
+          case 'keyword_require':
+            patternConfig = { keywords: config.split(',').map(s => s.trim()).filter(Boolean) };
+            break;
+          default:
+            patternConfig = { value: config };
+        }
+
+        const newRule = {
+          id: 'rule_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8),
+          name,
+          description: desc,
+          pattern: { type, config: patternConfig },
+          status: 'enabled',
+          priority,
+          category: 'general',
+          appliedTo: [],
+          violationCount: 0,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
+
+        chrome.storage.local.get(['litigo_rules'], function(data) {
+          const rules = data['litigo_rules'] || [];
+          rules.push(newRule);
+          chrome.storage.local.set({ ['litigo_rules']: rules }, function() {
+            modal.classList.remove('open');
+            loadRules();
+          });
+        });
+      });
+
+      // ─── Helpers ──────────────────────────────────────────────
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      // ─── Init ─────────────────────────────────────────────────
+      loadRules();
+      loadChatbots();
+      loadActivity();
+    })();
+  </script>
+</body>
+</html>

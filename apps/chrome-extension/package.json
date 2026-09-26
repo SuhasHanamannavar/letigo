@@ -1,0 +1,22 @@
+{
+  "name": "litigo-chrome-extension",
+  "version": "1.0.0",
+  "description": "AI Rule Enforcement — Define rules once. Litigo enforces them across ChatGPT, Claude, Gemini, and other chatbots.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "package": "vite build && cd dist && zip -r ../litigo-extension.zip ."
+  },
+  "dependencies": {
+    "@litigo/core": "*"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0",
+    "@types/chrome": "^0.0.268",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0"
+  }
+}

@@ -1,0 +1,37 @@
+/* Litigo injected styles for chatbot pages */
+
+.litigo-indicator {
+  position: relative;
+  z-index: 9999;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  animation: litigo-fade-in .25s ease;
+}
+
+@keyframes litigo-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.litigo-indicator * {
+  box-sizing: border-box;
+}
+
+/* Ensure Litigo UI doesn't inherit conflicting styles */
+.litigo-indicator {
+  font-family: 'Archivo', system-ui, -apple-system, sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .litigo-indicator {
+    animation: none;
+  }
+}
