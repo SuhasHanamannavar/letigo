@@ -35,6 +35,17 @@
       ],
       containerSelector: '[class*="react-scroll"]'
     },
+    'chatgpt.com': {
+      id: 'chatgpt',
+      name: 'ChatGPT',
+      responseSelectors: [
+        '[data-message-author-role="assistant"]',
+        '.markdown.prose',
+        '.assistant-message',
+        '[class*="message"] [class*="assistant"]'
+      ],
+      containerSelector: '[class*="react-scroll"]'
+    },
     'claude.ai': {
       id: 'claude',
       name: 'Claude',

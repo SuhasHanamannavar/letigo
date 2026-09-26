@@ -7,6 +7,7 @@
   "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": [
     "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
     "https://claude.ai/*",
     "https://gemini.google.com/*",
     "https://www.perplexity.ai/*",
@@ -25,13 +26,13 @@
     "default_title": "Litigo"
   },
   "background": {
-    "service_worker": "src/background/service-worker.js",
-    "type": "module"
+    "service_worker": "src/background/service-worker.js"
   },
   "content_scripts": [
     {
       "matches": [
         "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
         "https://claude.ai/*",
         "https://gemini.google.com/*",
         "https://www.perplexity.ai/*",
@@ -39,7 +40,7 @@
         "https://grok.x.ai/*",
         "https://x.com/i/grok/*"
       ],
-      "js": ["src/content/content-script.js"],
+      "js": ["moss.js", "src/content/content-script.js"],
       "css": ["src/content/litigo-inject.css"],
       "run_at": "document_idle",
       "all_frames": false
@@ -54,9 +55,10 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["src/content/litigo-inject.css", "icons/*.png"],
+      "resources": ["src/content/litigo-inject.css", "icons/*.png", "moss.wasm", "moss.js"],
       "matches": [
         "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
         "https://claude.ai/*",
         "https://gemini.google.com/*",
         "https://www.perplexity.ai/*",
@@ -65,5 +67,8 @@
         "https://x.com/*"
       ]
     }
-  ]
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
 }
