@@ -15,11 +15,11 @@ const DOWNLOADS = {
   },
   windows: {
     name: 'Windows',
-    file: '/downloads/litigo-desktop-source.zip',
-    size: '10 KB',
+    file: '/downloads/Litigo-Setup.exe',
+    size: '6 KB',
     version: '1.0.0',
-    status: 'Source code',
-    note: 'Build with Tauri (Rust + Node.js required)',
+    status: 'Installer',
+    note: 'Standalone Windows Desktop Installer (.exe)',
   },
   macos: {
     name: 'macOS',
@@ -308,7 +308,7 @@ export default function LandingPage() {
               <div className={styles.downloadIconWrap}>
                 <Icon.Windows size={24} />
               </div>
-              <span className={styles.badgeSource}>Source</span>
+              <span className={styles.badgeSource} style={{ background: '#dbeafe', color: '#1e40af' }}>Installer</span>
             </div>
             <h3 className={styles.downloadCardTitle}>{DOWNLOADS.windows.name}</h3>
             <p className={styles.downloadCardDesc}>{DOWNLOADS.windows.note}</p>
@@ -318,7 +318,7 @@ export default function LandingPage() {
             </div>
             <div className={styles.downloadBtn}>
               <Icon.Download size={16} />
-              Download Source
+              Download Windows (.exe)
             </div>
           </a>
 
