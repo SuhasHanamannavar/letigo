@@ -37,6 +37,17 @@ struct RulesScreen: View {
             .navigationTitle("Rules")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .cornerRadius(4)
+                        Text("Rules")
+                            .font(.system(size: 17, weight: .semibold))
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingNewRule = true }) {
                         Image(systemName: "plus")

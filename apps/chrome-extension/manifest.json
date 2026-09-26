@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "description": "Define rules once. Litigo enforces them across ChatGPT, Claude, Gemini, and other chatbots. Runs locally, respects your privacy.",
   "default_locale": "en",
-
   "permissions": ["storage", "activeTab", "scripting"],
-
   "host_permissions": [
     "https://chat.openai.com/*",
     "https://claude.ai/*",
@@ -16,23 +14,20 @@
     "https://grok.x.ai/*",
     "https://x.com/i/grok/*"
   ],
-
   "action": {
     "default_popup": "src/popup/popup.html",
     "default_icon": {
-      "16": "icons/icon-16.svg",
-      "32": "icons/icon-32.svg",
-      "48": "icons/icon-48.svg",
-      "128": "icons/icon-128.svg"
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
     },
     "default_title": "Litigo"
   },
-
   "background": {
     "service_worker": "src/background/service-worker.js",
     "type": "module"
   },
-
   "content_scripts": [
     {
       "matches": [
@@ -50,19 +45,16 @@
       "all_frames": false
     }
   ],
-
   "options_page": "src/options/options.html",
-
   "icons": {
-    "16": "icons/icon-16.svg",
-    "32": "icons/icon-32.svg",
-    "48": "icons/icon-48.svg",
-    "128": "icons/icon-128.svg"
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
   },
-
   "web_accessible_resources": [
     {
-      "resources": ["src/content/litigo-inject.css", "icons/*.svg"],
+      "resources": ["src/content/litigo-inject.css", "icons/*.png"],
       "matches": [
         "https://chat.openai.com/*",
         "https://claude.ai/*",

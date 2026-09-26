@@ -75,6 +75,19 @@ struct ActivityScreen: View {
             .background(Color.litigoBg)
             .navigationTitle("Activity")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .cornerRadius(4)
+                        Text("Activity")
+                            .font(.system(size: 17, weight: .semibold))
+                    }
+                }
+            }
         }
     }
 }
@@ -192,6 +205,19 @@ struct SettingsScreen: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .cornerRadius(4)
+                        Text("Settings")
+                            .font(.system(size: 17, weight: .semibold))
+                    }
+                }
+            }
         }
     }
 }

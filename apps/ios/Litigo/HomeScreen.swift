@@ -21,6 +21,25 @@ struct HomeScreen: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
+                    // Brand Header with Logo
+                    HStack(spacing: 12) {
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 36, height: 36)
+                            .cornerRadius(8)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Litigo")
+                                .font(.system(size: 22, weight: .bold))
+                                .foregroundColor(Color.litigoText)
+                            Text("AI Rule Enforcement")
+                                .font(.system(size: 12))
+                                .foregroundColor(Color.litigoMuted)
+                                .tracking(0.8)
+                        }
+                    }
+                    .padding(.bottom, 4)
+
                     // Protection Status
                     HStack(spacing: 8) {
                         Circle()

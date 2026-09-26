@@ -53,6 +53,13 @@
       padding: 20px 18px;
       border-bottom: 1px solid var(--border);
     }
+    .sidebar-brand-logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      border-radius: 5px;
+      flex-shrink: 0;
+    }
     .sidebar-brand-name {
       font-weight: 700;
       font-size: 16px;
@@ -462,10 +469,7 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-brand">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-        <path d="M12 2L3 7v6c0 5 3.8 9.4 9 10 5.2-.6 9-5 9-10V7l-9-5z"/>
-        <path d="M9 12l2 2 4-4"/>
-      </svg>
+      <img src="assets/logo.png" alt="Litigo" class="sidebar-brand-logo" />
       <span class="sidebar-brand-name">Litigo</span>
     </div>
 
