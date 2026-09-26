@@ -1,0 +1,27 @@
+{
+  "name": "Litigo — AI Rule Enforcer",
+  "short_name": "Litigo",
+  "description": "Your rules. Every chatbot. Zero-latency in-browser AI rule enforcement.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/logo-64px.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-128px.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/litigo-logo-full.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

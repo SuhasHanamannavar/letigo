@@ -58,6 +58,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" type="image/png" href="/logo-64px.png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
